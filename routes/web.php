@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentaireController;
-
+use App\Models\Article;
 
 Route::get('/', function () {
-    return view('welcome');
+    $articles = Article::all();
+    return view('articles.index', compact('articles'));
 });
 
 Route::post('/articles/{id}/like', [ArticleController::class, 'like'])->name('articles.like');
